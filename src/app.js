@@ -1,8 +1,13 @@
 'use strict'
 
 const express = require('express');
+const bodyparse = require( 'body-parser');
+
 const app = express();
 const router = express.Router();
+
+app.use(bodyparse.json());
+app.use(bodyparse.urlencoded({ extended: false }));
 
 const route = router.get('/', (request, response, next) => {
     response.status(200).send({
