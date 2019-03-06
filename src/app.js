@@ -8,15 +8,17 @@ const app = express();
 
 mongoose.connect('mongodb+srv://rafael:rafa@mongostr-yd1ew.gcp.mongodb.net/test?retryWrites=true')
 
-const index = require('./routes/index');
-const product = require('./routes/product');
+const productModel = require('./models/product');
+
+const indexRoute = require('./routes/index');
+const productRoute = require('./routes/product');
 
 app.use(bodyparse.json());
 app.use(bodyparse.urlencoded({
     extended: false
 }));
 
-app.use('/products', product);
-app.use('/', index);
+app.use('/products', productRoute);
+app.use('/', indexRoute);
 
 module.exports = app;
